@@ -35,5 +35,5 @@ public class ContactsActivityViewModel extends BaseViewModel<ContactsActivityVie
                 .subscribe(getContactResponse -> {
                     view.showContacts(getContactResponse);
                 }, throwable -> view.error(throwable));
-    }
+    }c
 }
