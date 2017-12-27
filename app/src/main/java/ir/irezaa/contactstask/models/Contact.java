@@ -5,11 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by rezapilehvar on 26/12/2017 AD.
  */
 
-public class Contact implements Serializable {
+public class Contact extends RealmObject implements Serializable {
 
     @Expose
     @SerializedName("phone")
@@ -18,6 +21,13 @@ public class Contact implements Serializable {
     @Expose
     @SerializedName("name")
     private String fullName;
+
+    @PrimaryKey
+    private long ID;
+
+    public void setPrimaryKey() {
+        this.ID = hashCode();
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;

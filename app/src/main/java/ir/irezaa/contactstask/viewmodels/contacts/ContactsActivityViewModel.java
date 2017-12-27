@@ -1,13 +1,11 @@
 package ir.irezaa.contactstask.viewmodels.contacts;
 
-import android.util.Log;
-
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import ir.irezaa.contactstask.api.ContactsApi;
+import ir.irezaa.contactstask.data.ContactsService;
 import ir.irezaa.contactstask.viewmodels.BaseViewModel;
 
 /**
@@ -16,24 +14,33 @@ import ir.irezaa.contactstask.viewmodels.BaseViewModel;
 
 public class ContactsActivityViewModel extends BaseViewModel<ContactsActivityView> {
     private Disposable getContactsDisposable;
-    private ContactsApi contactsApi;
+    private ContactsService contactsService;
 
-    public ContactsActivityViewModel(ContactsApi contactsApi) {
-        this.contactsApi = contactsApi;
+    public ContactsActivityViewModel(ContactsService contactsService) {
+        this.contactsService = contactsService;
     }
 
-    public void getContacts() {
+    public void getAllContacts() {
         if (getContactsDisposable != null) {
             getContactsDisposable.dispose();
         }
         view.showLoading();
+        view.showContacts(contactsService.getAllContacts(), true);
 
-        getContactsDisposable = contactsApi.getAllContacts()
+        getContactsDisposable = contactsService.syncContacts()
                 .delay(600, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getContactResponse -> {
-                    view.showContacts(getContactResponse);
+                    view.showContacts(getContactResponse, false);
                 }, throwable -> view.error(throwable));
-    }c
+    }
+
+    public void getFilteredContacts(String filter) {
+        if (filter.length() > 0) {
+            view.showContacts(contactsService.getFilteredByNumberContact(filter), true);
+        } else {
+            view.showContacts(contactsService.getAllContacts(), true);
+        }
+    }
 }

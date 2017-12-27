@@ -5,6 +5,7 @@ import android.app.Application;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import io.realm.Realm;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -28,6 +29,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Realm.init(this);
         instance = this;
     }
 
