@@ -3,6 +3,7 @@ package ir.irezaa.contactstask.api;
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import ir.irezaa.contactstask.models.Contact;
 import retrofit2.http.GET;
 
@@ -12,5 +13,5 @@ import retrofit2.http.GET;
 
 public interface ContactsApi {
     @GET("contacts.php")
-    Flowable<List<Contact>> getAllContacts();
+    Observable<List<Contact>> getAllContacts();
 }

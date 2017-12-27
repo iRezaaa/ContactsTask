@@ -10,6 +10,6 @@ import ir.irezaa.contactstask.viewmodels.IView;
  */
 
 public interface ContactsActivityView extends IView {
-    void showContacts(List<Contact> contactList);
+    void showContacts(List<Contact> contactList,boolean isCache);
     void showLoading();
 }

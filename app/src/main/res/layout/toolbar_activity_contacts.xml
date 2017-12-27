@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.AppCompatImageButton
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/toolbar_activity_contacts_backButton"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -38,9 +38,11 @@
             android:textColor="@android:color/white"
             tools:ignore="RelativeOverlap" />
 
-        <android.support.v7.widget.AppCompatImageButton
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/toolbar_activity_contacts_searchButton"
             android:layout_width="56dp"
             android:layout_height="56dp"
+            android:scaleType="center"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -48,6 +50,42 @@
             android:focusable="true"
             android:src="@drawable/ic_search_black_24dp"
             app:tint="@android:color/white" />
+
+        <RelativeLayout
+            android:id="@+id/toolbar_activity_contacts_searchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/toolbar_activity_contacts_backButton"
+            android:layout_toRightOf="@+id/toolbar_activity_contacts_backButton"
+            android:background="@color/colorPrimary"
+            android:visibility="gone">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/toolbar_activity_contacts_searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/toolbar_activity_contacts_clearButton"
+                android:layout_toStartOf="@+id/toolbar_activity_contacts_clearButton"
+                android:hint="Search by phone number"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/white90" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/toolbar_activity_contacts_clearButton"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="center"
+                android:src="@drawable/ic_clear_black_24dp"
+                app:tint="@android:color/white" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
